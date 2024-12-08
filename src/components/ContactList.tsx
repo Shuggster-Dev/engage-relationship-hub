@@ -72,6 +72,10 @@ const columns: ColumnDef<Contact>[] = [
 export function ContactList() {
   const { data: contacts, error, isLoading } = useContacts();
 
+  if (isLoading) {
+    return <Skeleton className="h-[400px] w-full" />;
+  }
+
   if (error) {
     return (
       <div className="p-4 text-red-500">
