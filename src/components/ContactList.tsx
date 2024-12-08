@@ -11,7 +11,7 @@ import Link from "next/link";
 const columns: ColumnDef<Contact>[] = [
   {
     accessorKey: "name",
-    header: "",
+    header: "Name",
     cell: ({ row }) => {
       const data = row.original;
       return (
@@ -27,8 +27,26 @@ const columns: ColumnDef<Contact>[] = [
     },
   },
   {
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => (
+      <div className="text-sm">
+        {row.original.email}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "phone",
+    header: "Phone",
+    cell: ({ row }) => (
+      <div className="text-sm">
+        {row.original.phone}
+      </div>
+    ),
+  },
+  {
     accessorKey: "status",
-    header: "",
+    header: "Status",
     cell: ({ row }) => (
       <div className="flex justify-end">
         <span className={`px-3 py-1 rounded-full text-sm ${
