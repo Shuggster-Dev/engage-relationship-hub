@@ -19,7 +19,7 @@ const columns: ColumnDef<Contact>[] = [
           <div className="font-medium">
             {data.first_name} {data.last_name}
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             {data.company}
           </div>
         </div>
@@ -27,22 +27,17 @@ const columns: ColumnDef<Contact>[] = [
     },
   },
   {
-    accessorKey: "email",
-    header: "Email",
-    cell: ({ row }) => (
-      <div className="text-sm">
-        {row.original.email}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "phone",
-    header: "Phone",
-    cell: ({ row }) => (
-      <div className="text-sm">
-        {row.original.phone}
-      </div>
-    ),
+    accessorKey: "contact",
+    header: "Contact",
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <div className="space-y-1">
+          <div className="text-sm">{data.email}</div>
+          <div className="text-sm text-muted-foreground">{data.phone}</div>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "status",
@@ -76,21 +71,15 @@ const columns: ColumnDef<Contact>[] = [
 export function ContactList() {
   const { data: contacts, error } = useContacts();
   
-  console.log("ContactList render - Full contacts data:", contacts);
-  console.log("ContactList render - Any error?", error);
-
   if (error) {
-    console.error("Error fetching contacts:", error);
     return <div>Error loading contacts</div>;
   }
 
   if (!contacts) {
-    console.log("No contacts data available yet");
     return <div>Loading contacts...</div>;
   }
 
   if (contacts.length === 0) {
-    console.log("Contacts array is empty");
     return <div>No contacts found</div>;
   }
 
