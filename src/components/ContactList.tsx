@@ -110,18 +110,7 @@ function ContactListContent() {
 }
 
 export default function ContactList() {
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
-        retry: 1,
-        staleTime: Infinity, // Prevent automatic refetching
-        cacheTime: 5 * 60 * 1000, // Cache for 5 minutes
-      }
-    }
-  }));
+  const [queryClient] = useState(() => new QueryClient());
   
   return (
     <QueryClientProvider client={queryClient}>

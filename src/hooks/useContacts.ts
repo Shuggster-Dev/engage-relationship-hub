@@ -71,9 +71,9 @@ export function useContacts() {
   return useQuery({
     queryKey: ['contacts'],
     queryFn: fetchContacts,
-    staleTime: Infinity, // Prevent automatic refetching
-    cacheTime: 5 * 60 * 1000, // Cache for 5 minutes
-    retry: 1,
+    staleTime: Infinity,
+    cacheTime: 5 * 60 * 1000,
+    retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
