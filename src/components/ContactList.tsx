@@ -75,7 +75,7 @@ export function ContactList() {
   if (isLoading) {
     return (
       <div className="border rounded-lg">
-        <Skeleton className="h-[400px] w-full" />
+        <div className="h-[400px] w-full bg-gray-100 animate-pulse" />
       </div>
     );
   }
@@ -98,10 +98,7 @@ export function ContactList() {
 
   return (
     <div className="border rounded-lg">
-      <DataTable 
-        columns={columns} 
-        data={contacts} 
-      />
+      <DataTable columns={columns} data={contacts} />
     </div>
   );
 }
