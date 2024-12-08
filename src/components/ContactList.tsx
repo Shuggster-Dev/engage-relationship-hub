@@ -22,6 +22,7 @@ const columns: ColumnDef<Contact>[] = [
     header: "Email",
     cell: ({ row }) => {
       const email = row.getValue("email") as string;
+      console.log("Email value:", email); // Added logging
       return email ? (
         <div className="flex items-center gap-2">
           <Mail className="h-4 w-4" />
@@ -37,6 +38,7 @@ const columns: ColumnDef<Contact>[] = [
     header: "Phone",
     cell: ({ row }) => {
       const phone = row.getValue("phone") as string;
+      console.log("Phone value:", phone); // Added logging
       return phone ? (
         <div className="flex items-center gap-2">
           <Phone className="h-4 w-4" />
@@ -66,6 +68,8 @@ const columns: ColumnDef<Contact>[] = [
 
 export function ContactList() {
   const { data: contacts, isLoading } = useContacts();
+  
+  console.log("Contacts data:", contacts); // Added logging
 
   return (
     <DataTable 
