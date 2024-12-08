@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
 const columns: ColumnDef<Contact>[] = [
   {
@@ -104,7 +105,8 @@ function ContactListContent() {
 }
 
 export default function ContactList() {
-  const queryClient = new QueryClient();
+  // Create QueryClient instance only once using useState
+  const [queryClient] = useState(() => new QueryClient());
   
   return (
     <QueryClientProvider client={queryClient}>

@@ -1,10 +1,10 @@
-import { ContactList } from "../components/ContactList";
 import { PageHeader } from "../components/PageHeader";
 import dynamic from 'next/dynamic';
 
-// Disable SSR for ContactList
+// Disable SSR for ContactList with no loading component to prevent hydration mismatch
 const ClientContactList = dynamic(() => import('../components/ContactList'), {
   ssr: false,
+  loading: () => null
 });
 
 export default function Home() {
