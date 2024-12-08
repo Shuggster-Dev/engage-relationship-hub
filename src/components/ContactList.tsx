@@ -1,9 +1,9 @@
 "use client";
 
-import { DataTable } from "@/components/ui/data-table";
+import { DataTable } from "../components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
-import { useContacts } from "@/hooks/useContacts";
-import { Contact } from "@/types";
+import { useContacts } from "../hooks/useContacts";
+import { Contact } from "../types";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
