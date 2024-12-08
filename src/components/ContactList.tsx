@@ -73,7 +73,11 @@ export function ContactList() {
   const { data: contacts, error, isLoading } = useContacts();
 
   if (isLoading) {
-    return <div className="border rounded-lg"><Skeleton className="h-[400px] w-full" /></div>;
+    return (
+      <div className="border rounded-lg">
+        <Skeleton className="h-[400px] w-full" />
+      </div>
+    );
   }
 
   if (error) {
@@ -85,7 +89,11 @@ export function ContactList() {
   }
 
   if (!contacts || contacts.length === 0) {
-    return <div className="border rounded-lg p-4">No contacts found</div>;
+    return (
+      <div className="border rounded-lg p-4">
+        No contacts found
+      </div>
+    );
   }
 
   return (
