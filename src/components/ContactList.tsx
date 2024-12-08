@@ -12,32 +12,44 @@ const columns: ColumnDef<Contact>[] = [
   {
     accessorKey: "first_name",
     header: "Name",
-    cell: ({ row }) => (
-      <div className="font-medium">
-        {row.original.first_name} {row.original.last_name}
-      </div>
-    ),
+    cell: ({ row }) => {
+      console.log("Rendering name cell for row:", row.original);
+      return (
+        <div className="font-medium">
+          {row.original.first_name} {row.original.last_name}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "email",
     header: "Email",
-    cell: ({ row }) => (
-      <div className="text-gray-500">{row.original.email}</div>
-    ),
+    cell: ({ row }) => {
+      console.log("Rendering email cell for row:", row.original.email);
+      return (
+        <div className="text-gray-500">{row.original.email}</div>
+      );
+    },
   },
   {
     accessorKey: "phone",
     header: "Phone",
-    cell: ({ row }) => (
-      <div className="text-gray-500">{row.original.phone}</div>
-    ),
+    cell: ({ row }) => {
+      console.log("Rendering phone cell for row:", row.original.phone);
+      return (
+        <div className="text-gray-500">{row.original.phone}</div>
+      );
+    },
   },
   {
     accessorKey: "company",
     header: "Company",
-    cell: ({ row }) => (
-      <div className="text-gray-500">{row.original.company}</div>
-    ),
+    cell: ({ row }) => {
+      console.log("Rendering company cell for row:", row.original.company);
+      return (
+        <div className="text-gray-500">{row.original.company}</div>
+      );
+    },
   },
   {
     accessorKey: "status",
@@ -71,6 +83,7 @@ const columns: ColumnDef<Contact>[] = [
 export function ContactList() {
   const { data: contacts } = useContacts();
   
+  console.log("ContactList component rendered");
   console.log("Raw contacts data:", contacts);
   
   if (!contacts) {
@@ -83,8 +96,8 @@ export function ContactList() {
     return <div>No contacts found</div>;
   }
 
-  // Log the first contact to see its structure
   console.log("First contact:", contacts[0]);
+  console.log("Number of contacts:", contacts.length);
   
   return (
     <DataTable 
