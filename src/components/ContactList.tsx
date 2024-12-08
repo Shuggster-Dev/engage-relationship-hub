@@ -33,9 +33,9 @@ const columns: ColumnDef<Contact>[] = [
     cell: ({ row }) => (
       <div className="flex justify-end">
         <span className={`px-3 py-1 rounded-full text-sm ${
-          row.original.status === 'prospect' ? 'bg-gray-800 text-white' :
-          row.original.status === 'lead' ? 'bg-white text-black' :
-          'bg-gray-800 text-white'
+          row.original.status === 'prospect' ? 'bg-blue-500/20 text-blue-400' :
+          row.original.status === 'lead' ? 'bg-yellow-500/20 text-yellow-400' :
+          'bg-green-500/20 text-green-400'
         }`}>
           {row.original.status}
         </span>
