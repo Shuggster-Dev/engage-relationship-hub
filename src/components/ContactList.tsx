@@ -7,6 +7,7 @@ import { Contact } from "../types";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const columns: ColumnDef<Contact>[] = [
   {
@@ -68,7 +69,7 @@ const columns: ColumnDef<Contact>[] = [
   },
 ];
 
-export function ContactList() {
+function ContactListContent() {
   const { data: contacts, isLoading, error } = useContacts();
 
   if (isLoading) {
@@ -99,5 +100,15 @@ export function ContactList() {
     <div className="border rounded-lg">
       <DataTable columns={columns} data={contacts} />
     </div>
+  );
+}
+
+export default function ContactList() {
+  const queryClient = new QueryClient();
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ContactListContent />
+    </QueryClientProvider>
   );
 }
