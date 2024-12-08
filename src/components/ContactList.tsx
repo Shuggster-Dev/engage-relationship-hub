@@ -1,10 +1,11 @@
 "use client";
 
-import { DataTable } from "@/components/ui/data-table";
+import { DataTable } from "../components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
-import { useContacts } from "@/hooks/useContacts";
-import { Contact } from "@/types";
+import { useContacts } from "../hooks/useContacts";
+import { Contact } from "../types";
 import { Button } from "./ui/button";
+import { Avatar } from "./ui/avatar";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
@@ -15,12 +16,15 @@ const columns: ColumnDef<Contact>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div className="space-y-1">
-          <div className="font-medium">
-            {data.first_name} {data.last_name}
-          </div>
-          <div className="text-sm text-muted-foreground">
-            {data.company}
+        <div className="flex items-center gap-3">
+          <Avatar firstName={data.first_name} lastName={data.last_name} size={32} />
+          <div className="space-y-1">
+            <div className="font-medium">
+              {data.first_name} {data.last_name}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              {data.company}
+            </div>
           </div>
         </div>
       );
