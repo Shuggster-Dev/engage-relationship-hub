@@ -1,7 +1,17 @@
 'use client';
 
 import { PageHeader } from "../components/PageHeader";
-import ContactList from '../components/ContactList';
+import dynamic from 'next/dynamic';
+
+const ClientContactList = dynamic(
+  () => import('../components/ContactList'),
+  {
+    ssr: false,
+    loading: () => <div className="border rounded-lg">
+      <div className="h-[400px] w-full bg-gray-800 animate-pulse" />
+    </div>
+  }
+);
 
 export default function Home() {
   return (
@@ -10,7 +20,7 @@ export default function Home() {
         title="Contacts" 
         description="Manage your contacts and keep track of your relationships."
       />
-      <ContactList />
+      <ClientContactList />
     </div>
   );
 }
