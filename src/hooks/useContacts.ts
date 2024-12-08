@@ -71,6 +71,11 @@ export function useContacts() {
   return useQuery({
     queryKey: ['contacts'],
     queryFn: fetchContacts,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: Infinity, // Prevent automatic refetching
+    cacheTime: 5 * 60 * 1000, // Cache for 5 minutes
+    retry: 1,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
   });
 }

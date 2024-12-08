@@ -115,7 +115,10 @@ export default function ContactList() {
       queries: {
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        retry: false
+        refetchOnReconnect: false,
+        retry: 1,
+        staleTime: Infinity, // Prevent automatic refetching
+        cacheTime: 5 * 60 * 1000, // Cache for 5 minutes
       }
     }
   }));
