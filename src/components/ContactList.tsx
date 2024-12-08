@@ -23,6 +23,22 @@ const columns: ColumnDef<Contact>[] = [
     },
   },
   {
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => {
+      const email = row.getValue("email") as string;
+      return <div className="text-gray-500">{email}</div>;
+    },
+  },
+  {
+    accessorKey: "phone",
+    header: "Phone",
+    cell: ({ row }) => {
+      const phone = row.getValue("phone") as string;
+      return <div className="text-gray-500">{phone}</div>;
+    },
+  },
+  {
     accessorKey: "company",
     header: "Company",
     cell: ({ row }) => {
