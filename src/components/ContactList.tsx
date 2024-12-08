@@ -10,58 +10,28 @@ import Link from "next/link";
 
 const columns: ColumnDef<Contact>[] = [
   {
-    accessorKey: "first_name",
-    header: "Name",
+    accessorKey: "name",
+    header: "",
     cell: ({ row }) => {
       const data = row.original;
-      console.log("Name cell data:", {
-        firstName: data.first_name,
-        lastName: data.last_name,
-        fullRow: data
-      });
       return (
-        <div className="font-medium">
-          {data.first_name} {data.last_name}
+        <div className="space-y-1">
+          <div className="font-medium">
+            {data.first_name} {data.last_name}
+          </div>
+          <div className="text-sm text-gray-500">
+            {data.company}
+          </div>
         </div>
       );
     },
   },
   {
-    accessorKey: "email",
-    header: "Email",
-    cell: ({ row }) => {
-      console.log("Email cell data:", row.getValue("email"));
-      return (
-        <div className="text-gray-500">{row.getValue("email")}</div>
-      );
-    },
-  },
-  {
-    accessorKey: "phone",
-    header: "Phone",
-    cell: ({ row }) => {
-      console.log("Phone cell data:", row.getValue("phone"));
-      return (
-        <div className="text-gray-500">{row.getValue("phone")}</div>
-      );
-    },
-  },
-  {
-    accessorKey: "company",
-    header: "Company",
-    cell: ({ row }) => {
-      console.log("Company cell data:", row.getValue("company"));
-      return (
-        <div className="text-gray-500">{row.getValue("company")}</div>
-      );
-    },
-  },
-  {
     accessorKey: "status",
-    header: "Status",
+    header: "",
     cell: ({ row }) => (
       <div className="flex justify-end">
-        <span className={`px-2 py-1 rounded-full text-sm ${
+        <span className={`px-3 py-1 rounded-full text-sm ${
           row.original.status === 'prospect' ? 'bg-gray-700 text-white' :
           row.original.status === 'lead' ? 'bg-white text-black border border-gray-200' :
           'bg-gray-700 text-white'
@@ -108,7 +78,6 @@ export function ContactList() {
 
   return (
     <div>
-      <pre style={{ display: 'none' }}>{JSON.stringify(contacts, null, 2)}</pre>
       <DataTable 
         columns={columns} 
         data={contacts} 
