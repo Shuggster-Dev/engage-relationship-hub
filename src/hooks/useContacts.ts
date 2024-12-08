@@ -33,9 +33,11 @@ const mockContacts: Contact[] = [
 ];
 
 const fetchContacts = async (): Promise<Contact[]> => {
+  console.log('Fetching contacts...');
   // Simulate API call
   return new Promise((resolve) => {
     setTimeout(() => {
+      console.log('Contacts fetched:', mockContacts);
       resolve(mockContacts);
     }, 500);
   });

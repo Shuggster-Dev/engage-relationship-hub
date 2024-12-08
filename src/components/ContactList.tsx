@@ -69,22 +69,25 @@ const columns: ColumnDef<Contact>[] = [
 ];
 
 export function ContactList() {
-  const { data: contacts, error } = useContacts();
+  const { data: contacts, error, isLoading } = useContacts();
   
+  console.log('ContactList render:', { contacts, error, isLoading });
+
   if (error) {
-    return <div>Error loading contacts</div>;
+    console.error('Error loading contacts:', error);
+    return <div className="p-4 text-red-500">Error loading contacts</div>;
   }
 
-  if (!contacts) {
-    return <div>Loading contacts...</div>;
+  if (isLoading) {
+    return <div className="p-4">Loading contacts...</div>;
   }
 
-  if (contacts.length === 0) {
-    return <div>No contacts found</div>;
+  if (!contacts || contacts.length === 0) {
+    return <div className="p-4">No contacts found</div>;
   }
 
   return (
-    <div>
+    <div className="border rounded-lg">
       <DataTable 
         columns={columns} 
         data={contacts} 
