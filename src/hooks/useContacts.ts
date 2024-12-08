@@ -32,6 +32,8 @@ const mockContacts: Contact[] = [
 ];
 
 const fetchContacts = async (): Promise<Contact[]> => {
+  // Simulate network delay
+  await new Promise(resolve => setTimeout(resolve, 1000));
   return mockContacts;
 };
 
@@ -39,5 +41,8 @@ export function useContacts() {
   return useQuery({
     queryKey: ['contacts'],
     queryFn: fetchContacts,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnMount: false,
+    refetchOnWindowFocus: false
   });
 }

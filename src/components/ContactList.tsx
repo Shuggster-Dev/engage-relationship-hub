@@ -69,7 +69,15 @@ const columns: ColumnDef<Contact>[] = [
 ];
 
 export function ContactList() {
-  const { data: contacts, error } = useContacts();
+  const { data: contacts, isLoading, error } = useContacts();
+
+  if (isLoading) {
+    return (
+      <div className="border rounded-lg">
+        <div className="h-[400px] w-full bg-gray-100 animate-pulse" />
+      </div>
+    );
+  }
 
   if (error) {
     return (
