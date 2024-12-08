@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable } from "../components/ui/data-table";
+import { DataTable } from "./ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { useContacts } from "../hooks/useContacts";
 import { Contact } from "../types";
@@ -78,10 +78,6 @@ export function ContactList() {
         Error loading contacts
       </div>
     );
-  }
-
-  if (isLoading) {
-    return <Skeleton className="h-[400px] w-full" />;
   }
 
   if (!contacts || contacts.length === 0) {
