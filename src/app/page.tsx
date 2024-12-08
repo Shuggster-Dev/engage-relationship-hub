@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import { ContactList } from "@/components/ContactList";
-import { PageHeader } from "@/components/PageHeader";
-import { Skeleton } from "@/components/ui/skeleton";
+import { ContactList } from "../components/ContactList";
+import { PageHeader } from "../components/PageHeader";
+import { Skeleton } from "../components/ui/skeleton";
 
 export default function Home() {
   return (
