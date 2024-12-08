@@ -13,11 +13,10 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "first_name",
     header: "Name",
     cell: ({ row }) => {
-      const firstName = row.getValue("first_name") as string;
-      const lastName = row.getValue("last_name") as string;
+      const contact = row.original;
       return (
         <div className="font-medium">
-          {firstName} {lastName}
+          {contact.first_name} {contact.last_name}
         </div>
       );
     },
@@ -42,23 +41,23 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "company",
     header: "Company",
     cell: ({ row }) => {
-      const company = row.getValue("company") as string;
-      return <div className="text-gray-500">{company}</div>;
+      const contact = row.original;
+      return <div className="text-gray-500">{contact.company}</div>;
     },
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.getValue("status") as string;
+      const contact = row.original;
       return (
         <div className="flex justify-end">
           <span className={`px-2 py-1 rounded-full text-sm ${
-            status === 'prospect' ? 'bg-gray-700 text-white' :
-            status === 'lead' ? 'bg-white text-black border border-gray-200' :
+            contact.status === 'prospect' ? 'bg-gray-700 text-white' :
+            contact.status === 'lead' ? 'bg-white text-black border border-gray-200' :
             'bg-gray-700 text-white'
           }`}>
-            {status}
+            {contact.status}
           </span>
         </div>
       );
