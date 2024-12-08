@@ -1,18 +1,8 @@
 'use client';
 
 import { PageHeader } from "../components/PageHeader";
-import dynamic from 'next/dynamic';
+import { ContactList } from "../components/ContactList";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const ClientContactList = dynamic(
-  () => import('../components/ContactList'),
-  {
-    ssr: false,
-    loading: () => <div className="border rounded-lg">
-      <div className="h-[400px] w-full bg-gray-800 animate-pulse" />
-    </div>
-  }
-);
 
 // Create a single QueryClient instance
 const queryClient = new QueryClient({
@@ -36,7 +26,7 @@ export default function Home() {
           title="Contacts" 
           description="Manage your contacts and keep track of your relationships."
         />
-        <ClientContactList />
+        <ContactList />
       </div>
     </QueryClientProvider>
   );

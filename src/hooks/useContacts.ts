@@ -61,7 +61,6 @@ const mockContacts: Contact[] = [
 ];
 
 const fetchContacts = async (): Promise<Contact[]> => {
-  console.log('Fetching contacts from mock data');
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 1000));
   return mockContacts;
@@ -70,12 +69,6 @@ const fetchContacts = async (): Promise<Contact[]> => {
 export function useContacts() {
   return useQuery({
     queryKey: ['contacts'],
-    queryFn: fetchContacts,
-    staleTime: Infinity,
-    cacheTime: 5 * 60 * 1000,
-    retry: false,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
+    queryFn: fetchContacts
   });
 }

@@ -42,7 +42,7 @@ const columns: ColumnDef<Contact>[] = [
   },
 ];
 
-export default function ContactList() {
+export function ContactList() {
   const { data: contacts, isLoading, error } = useContacts();
 
   if (isLoading) {
