@@ -13,10 +13,15 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "first_name",
     header: "Name",
     cell: ({ row }) => {
-      console.log("Rendering name cell for row:", row.original);
+      const data = row.original;
+      console.log("Name cell data:", {
+        firstName: data.first_name,
+        lastName: data.last_name,
+        fullRow: data
+      });
       return (
         <div className="font-medium">
-          {row.original.first_name} {row.original.last_name}
+          {data.first_name} {data.last_name}
         </div>
       );
     },
@@ -25,9 +30,9 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "email",
     header: "Email",
     cell: ({ row }) => {
-      console.log("Rendering email cell for row:", row.original.email);
+      console.log("Email cell data:", row.getValue("email"));
       return (
-        <div className="text-gray-500">{row.original.email}</div>
+        <div className="text-gray-500">{row.getValue("email")}</div>
       );
     },
   },
@@ -35,9 +40,9 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "phone",
     header: "Phone",
     cell: ({ row }) => {
-      console.log("Rendering phone cell for row:", row.original.phone);
+      console.log("Phone cell data:", row.getValue("phone"));
       return (
-        <div className="text-gray-500">{row.original.phone}</div>
+        <div className="text-gray-500">{row.getValue("phone")}</div>
       );
     },
   },
@@ -45,9 +50,9 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "company",
     header: "Company",
     cell: ({ row }) => {
-      console.log("Rendering company cell for row:", row.original.company);
+      console.log("Company cell data:", row.getValue("company"));
       return (
-        <div className="text-gray-500">{row.original.company}</div>
+        <div className="text-gray-500">{row.getValue("company")}</div>
       );
     },
   },
@@ -81,13 +86,18 @@ const columns: ColumnDef<Contact>[] = [
 ];
 
 export function ContactList() {
-  const { data: contacts } = useContacts();
+  const { data: contacts, error } = useContacts();
   
-  console.log("ContactList component rendered");
-  console.log("Raw contacts data:", contacts);
-  
+  console.log("ContactList render - Full contacts data:", contacts);
+  console.log("ContactList render - Any error?", error);
+
+  if (error) {
+    console.error("Error fetching contacts:", error);
+    return <div>Error loading contacts</div>;
+  }
+
   if (!contacts) {
-    console.log("No contacts data available");
+    console.log("No contacts data available yet");
     return <div>Loading contacts...</div>;
   }
 
@@ -96,13 +106,13 @@ export function ContactList() {
     return <div>No contacts found</div>;
   }
 
-  console.log("First contact:", contacts[0]);
-  console.log("Number of contacts:", contacts.length);
-  
   return (
-    <DataTable 
-      columns={columns} 
-      data={contacts} 
-    />
+    <div>
+      <pre style={{ display: 'none' }}>{JSON.stringify(contacts, null, 2)}</pre>
+      <DataTable 
+        columns={columns} 
+        data={contacts} 
+      />
+    </div>
   );
 }
