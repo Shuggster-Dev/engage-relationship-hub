@@ -7,6 +7,7 @@ import { Contact } from "../types";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 const columns: ColumnDef<Contact>[] = [
   {
@@ -70,16 +71,17 @@ const columns: ColumnDef<Contact>[] = [
 
 export function ContactList() {
   const { data: contacts, error, isLoading } = useContacts();
-  
-  console.log('ContactList render:', { contacts, error, isLoading });
 
   if (error) {
-    console.error('Error loading contacts:', error);
-    return <div className="p-4 text-red-500">Error loading contacts</div>;
+    return (
+      <div className="p-4 text-red-500">
+        Error loading contacts
+      </div>
+    );
   }
 
   if (isLoading) {
-    return <div className="p-4">Loading contacts...</div>;
+    return <Skeleton className="h-[400px] w-full" />;
   }
 
   if (!contacts || contacts.length === 0) {
