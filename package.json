@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@tanstack/react-table": "^8.20.5",
+    "lucide-react": "^0.468.0"
+  }
+}
