@@ -32,9 +32,7 @@ const mockContacts: Contact[] = [
 ];
 
 const fetchContacts = async (): Promise<Contact[]> => {
-  return new Promise((resolve) => {
-    resolve(mockContacts);
-  });
+  return mockContacts;
 };
 
 export function useContacts() {

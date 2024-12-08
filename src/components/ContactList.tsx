@@ -69,7 +69,7 @@ const columns: ColumnDef<Contact>[] = [
 ];
 
 export function ContactList() {
-  const { data: contacts, error, isLoading } = useContacts();
+  const { data: contacts, error } = useContacts();
 
   if (error) {
     return (
