@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useContacts } from "../hooks/useContacts";
 import { Contact } from "../types";
 import { Button } from "./ui/button";
-import { ArrowUpRight } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
@@ -13,15 +13,15 @@ import { useState } from "react";
 const columns: ColumnDef<Contact>[] = [
   {
     accessorKey: "name",
-    header: "Name",
+    header: "",
     cell: ({ row }) => {
       const data = row.original;
       return (
         <div className="space-y-1">
-          <div className="font-medium">
+          <div className="font-semibold text-white">
             {data.first_name} {data.last_name}
           </div>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-gray-400">
             {data.company}
           </div>
         </div>
@@ -29,42 +29,17 @@ const columns: ColumnDef<Contact>[] = [
     },
   },
   {
-    accessorKey: "contact",
-    header: "Contact",
-    cell: ({ row }) => {
-      const data = row.original;
-      return (
-        <div className="space-y-1">
-          <div className="text-sm">{data.email}</div>
-          <div className="text-sm text-muted-foreground">{data.phone}</div>
-        </div>
-      );
-    },
-  },
-  {
     accessorKey: "status",
-    header: "Status",
+    header: "",
     cell: ({ row }) => (
       <div className="flex justify-end">
         <span className={`px-3 py-1 rounded-full text-sm ${
           row.original.status === 'prospect' ? 'bg-gray-700 text-white' :
-          row.original.status === 'lead' ? 'bg-white text-black border border-gray-200' :
+          row.original.status === 'lead' ? 'bg-white text-black' :
           'bg-gray-700 text-white'
         }`}>
           {row.original.status}
         </span>
-      </div>
-    ),
-  },
-  {
-    id: "actions",
-    cell: ({ row }) => (
-      <div className="flex justify-end">
-        <Link href={`/contacts/${row.original.id}`}>
-          <Button variant="ghost" size="sm">
-            <ArrowUpRight className="h-4 w-4" />
-          </Button>
-        </Link>
       </div>
     ),
   },
@@ -75,15 +50,30 @@ function ContactListContent() {
 
   if (isLoading) {
     return (
-      <div className="border rounded-lg">
-        <div className="h-[400px] w-full bg-gray-100 animate-pulse" />
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <div className="relative w-full max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <input
+              type="text"
+              placeholder="Search contacts..."
+              className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gray-600"
+              disabled
+            />
+          </div>
+          <Button className="bg-white text-black hover:bg-gray-100">
+            <Plus className="h-4 w-4 mr-2" />
+            Add Contact
+          </Button>
+        </div>
+        <div className="h-[400px] w-full bg-gray-800 rounded-lg animate-pulse" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="border rounded-lg p-4 text-red-500">
+      <div className="p-4 text-red-500 bg-gray-800 rounded-lg">
         Error loading contacts
       </div>
     );
@@ -91,15 +81,31 @@ function ContactListContent() {
 
   if (!contacts || contacts.length === 0) {
     return (
-      <div className="border rounded-lg p-4">
+      <div className="p-4 text-gray-400 bg-gray-800 rounded-lg">
         No contacts found
       </div>
     );
   }
 
   return (
-    <div className="border rounded-lg">
-      <DataTable columns={columns} data={contacts} />
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <div className="relative w-full max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <input
+            type="text"
+            placeholder="Search contacts..."
+            className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gray-600"
+          />
+        </div>
+        <Button className="bg-white text-black hover:bg-gray-100">
+          <Plus className="h-4 w-4 mr-2" />
+          Add Contact
+        </Button>
+      </div>
+      <div className="bg-gray-900 rounded-lg overflow-hidden">
+        <DataTable columns={columns} data={contacts} />
+      </div>
     </div>
   );
 }
