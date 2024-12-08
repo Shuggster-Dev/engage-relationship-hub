@@ -6,30 +6,57 @@ import { useQuery } from "@tanstack/react-query";
 const mockContacts: Contact[] = [
   {
     id: "1",
-    first_name: "John",
-    last_name: "Doe",
-    email: "john@example.com",
+    first_name: "Sarah",
+    last_name: "Johnson",
+    email: "sarah@google.com",
     phone: "(555) 123-4567",
-    company: "Acme Inc",
-    status: "lead"
-  },
-  {
-    id: "2",
-    first_name: "Jane",
-    last_name: "Smith",
-    email: "jane@example.com",
-    phone: "(555) 987-6543",
-    company: "Tech Corp",
+    company: "Google",
     status: "prospect"
   },
   {
-    id: "3",
-    first_name: "Bob",
-    last_name: "Johnson",
-    email: "bob@example.com",
-    phone: "(555) 246-8135",
-    company: "Global Solutions",
+    id: "2",
+    first_name: "Michael",
+    last_name: "Williams",
+    email: "michael@microsoft.com",
+    phone: "(555) 987-6543",
+    company: "Microsoft",
     status: "customer"
+  },
+  {
+    id: "3",
+    first_name: "Emma",
+    last_name: "Brown",
+    email: "emma@amazon.com",
+    phone: "(555) 246-8135",
+    company: "Amazon",
+    status: "lead"
+  },
+  {
+    id: "4",
+    first_name: "David",
+    last_name: "Jones",
+    email: "david@meta.com",
+    phone: "(555) 135-7924",
+    company: "Meta",
+    status: "prospect"
+  },
+  {
+    id: "5",
+    first_name: "Lisa",
+    last_name: "Garcia",
+    email: "lisa@netflix.com",
+    phone: "(555) 369-1478",
+    company: "Netflix",
+    status: "customer"
+  },
+  {
+    id: "6",
+    first_name: "James",
+    last_name: "Miller",
+    email: "james@adobe.com",
+    phone: "(555) 258-1470",
+    company: "Adobe",
+    status: "lead"
   }
 ];
 
@@ -44,7 +71,5 @@ export function useContacts() {
     queryKey: ['contacts'],
     queryFn: fetchContacts,
     staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchOnMount: false,
-    refetchOnWindowFocus: false
   });
 }

@@ -6,7 +6,6 @@ import { useContacts } from "../hooks/useContacts";
 import { Contact } from "../types";
 import { Button } from "./ui/button";
 import { Plus, Search } from "lucide-react";
-import Link from "next/link";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -18,7 +17,7 @@ const columns: ColumnDef<Contact>[] = [
       const data = row.original;
       return (
         <div className="space-y-1">
-          <div className="font-semibold text-white">
+          <div className="font-medium text-white">
             {data.first_name} {data.last_name}
           </div>
           <div className="text-sm text-gray-400">
@@ -34,9 +33,9 @@ const columns: ColumnDef<Contact>[] = [
     cell: ({ row }) => (
       <div className="flex justify-end">
         <span className={`px-3 py-1 rounded-full text-sm ${
-          row.original.status === 'prospect' ? 'bg-gray-700 text-white' :
+          row.original.status === 'prospect' ? 'bg-gray-800 text-white' :
           row.original.status === 'lead' ? 'bg-white text-black' :
-          'bg-gray-700 text-white'
+          'bg-gray-800 text-white'
         }`}>
           {row.original.status}
         </span>
