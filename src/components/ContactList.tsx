@@ -71,10 +71,25 @@ const columns: ColumnDef<Contact>[] = [
 export function ContactList() {
   const { data: contacts } = useContacts();
   
+  console.log("Raw contacts data:", contacts);
+  
+  if (!contacts) {
+    console.log("No contacts data available");
+    return <div>Loading contacts...</div>;
+  }
+
+  if (contacts.length === 0) {
+    console.log("Contacts array is empty");
+    return <div>No contacts found</div>;
+  }
+
+  // Log the first contact to see its structure
+  console.log("First contact:", contacts[0]);
+  
   return (
     <DataTable 
       columns={columns} 
-      data={contacts || []} 
+      data={contacts} 
     />
   );
 }
