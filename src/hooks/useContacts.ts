@@ -61,6 +61,7 @@ const mockContacts: Contact[] = [
 ];
 
 const fetchContacts = async (): Promise<Contact[]> => {
+  console.log('Fetching contacts from mock data');
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 1000));
   return mockContacts;
