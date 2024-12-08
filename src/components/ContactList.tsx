@@ -6,7 +6,6 @@ import { useContacts } from "../hooks/useContacts";
 import { Contact } from "../types";
 import { Button } from "./ui/button";
 import { Plus, Search } from "lucide-react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const columns: ColumnDef<Contact>[] = [
   {
@@ -43,21 +42,7 @@ const columns: ColumnDef<Contact>[] = [
   },
 ];
 
-// Create a single QueryClient instance outside of the component
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-      cacheTime: 5 * 60 * 1000,
-      retry: false,
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-    },
-  },
-});
-
-function ContactListContent() {
+export default function ContactList() {
   const { data: contacts, isLoading, error } = useContacts();
 
   if (isLoading) {
@@ -119,13 +104,5 @@ function ContactListContent() {
         <DataTable columns={columns} data={contacts} />
       </div>
     </div>
-  );
-}
-
-export default function ContactList() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ContactListContent />
-    </QueryClientProvider>
   );
 }
