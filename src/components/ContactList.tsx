@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const columns: ColumnDef<Contact>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "first_name",
     header: "Name",
     cell: ({ row }) => {
       const firstName = row.getValue("first_name") as string;
@@ -26,16 +26,16 @@ const columns: ColumnDef<Contact>[] = [
     accessorKey: "email",
     header: "Email",
     cell: ({ row }) => {
-      const email = row.getValue("email") as string;
-      return <div className="text-gray-500">{email}</div>;
+      const contact = row.original;
+      return <div className="text-gray-500">{contact.email}</div>;
     },
   },
   {
     accessorKey: "phone",
     header: "Phone",
     cell: ({ row }) => {
-      const phone = row.getValue("phone") as string;
-      return <div className="text-gray-500">{phone}</div>;
+      const contact = row.original;
+      return <div className="text-gray-500">{contact.phone}</div>;
     },
   },
   {
