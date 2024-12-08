@@ -21,7 +21,15 @@ const mockContacts: Contact[] = [
     company: "Tech Corp",
     status: "prospect"
   },
-  // Add more mock contacts as needed
+  {
+    id: "3",
+    first_name: "Bob",
+    last_name: "Johnson",
+    email: "bob@example.com",
+    phone: "(555) 246-8135",
+    company: "Global Solutions",
+    status: "customer"
+  }
 ];
 
 const fetchContacts = async (): Promise<Contact[]> => {
@@ -29,7 +37,7 @@ const fetchContacts = async (): Promise<Contact[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockContacts);
-    }, 1000);
+    }, 500);
   });
 };
 
