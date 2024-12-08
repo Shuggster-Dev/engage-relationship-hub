@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { DataTable } from "./ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
@@ -105,8 +105,15 @@ function ContactListContent() {
 }
 
 export default function ContactList() {
-  // Create QueryClient instance only once using useState
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        retry: false
+      }
+    }
+  }));
   
   return (
     <QueryClientProvider client={queryClient}>
