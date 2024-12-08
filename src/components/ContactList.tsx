@@ -7,7 +7,6 @@ import { Contact } from "../types";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { Skeleton } from "./ui/skeleton";
 
 const columns: ColumnDef<Contact>[] = [
   {
@@ -71,14 +70,6 @@ const columns: ColumnDef<Contact>[] = [
 
 export function ContactList() {
   const { data: contacts, error, isLoading } = useContacts();
-
-  if (isLoading) {
-    return (
-      <div className="border rounded-lg">
-        <div className="h-[400px] w-full bg-gray-100 animate-pulse" />
-      </div>
-    );
-  }
 
   if (error) {
     return (

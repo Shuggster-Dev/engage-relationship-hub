@@ -1,5 +1,6 @@
 import { ContactList } from "../components/ContactList";
 import { PageHeader } from "../components/PageHeader";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -8,7 +9,13 @@ export default function Home() {
         title="Contacts" 
         description="Manage your contacts and keep track of your relationships."
       />
-      <ContactList />
+      <Suspense fallback={
+        <div className="border rounded-lg">
+          <div className="h-[400px] w-full bg-gray-100 animate-pulse" />
+        </div>
+      }>
+        <ContactList />
+      </Suspense>
     </div>
   );
 }
